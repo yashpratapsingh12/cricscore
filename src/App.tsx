@@ -1,27 +1,25 @@
-import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Navbar from "./assets/Components/Navbar";
+import CricScore from "./assets/Pages/CricScore";
+import CurrentMatches from "./assets/Pages/CurrentMatch";
+import PlayersList from "./assets/Pages/PlayersList";
+import SeriesList from "./assets/Pages/SeriesList";
+import SeriesSearch from "./assets/Pages/SeriesSearch";
 
 function App() {
-  const [data, Setdata] = useState([]);
-
-  useEffect(() => {
-    const fectdata = async () => {
-      try {
-        await fetch(
-          `https://api.cricapi.com/v1/currentMatches?apikey=${
-            import.meta.env.VITE_API_KEY
-          }&offset=0`
-        )
-          .then((res) => res.json())
-          .then((dat) => console.log(dat));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fectdata();
-  }, []);
-
-  return <div></div>;
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<CricScore />} />
+        <Route path="Current" element={<CurrentMatches />} />
+        <Route path="Player" element={<PlayersList />} />
+        <Route path="SeriesList" element={<SeriesList />} />
+        <Route path="SeriesSearch" element={<SeriesSearch />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
