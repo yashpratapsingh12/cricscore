@@ -16,36 +16,38 @@ type Match = {
   series: string;
 };
 
-type data = {
-  matches: Match[];
-  loading: boolean;
-};
+// type data = {
+//   matches: Match[];
+//   loading: boolean;
+// };
 
 const CricScore = () => {
   const [matches, setMatches] = useState<Match[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [Error, setError] = useState<string>("");
+  // const [error, setError] = useState<string>("ss");
 
-  useEffect(() => {
-    const fetchMatches = async () => {
-      try {
-        const response = await fetch(
-          `https://api.cricapi.com/v1/cricScore?apikey=${
-            import.meta.env.VITE_API_KEY
-          }`
-        );
+  // useEffect(() => {
+  //   const fetchMatches = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://api.cricapi.com/v1/cricScore?apikey=${
+  //           import.meta.env.VITE_API_KEY
+  //         }`
+  //       );
 
-        const data = await response.json();
-        setMatches(data?.data || []);
-      } catch (error) {
-        setError("Cannot Fetch data");
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  //       const data = await response.json();
+  //       console.log(data);
 
-    fetchMatches();
-  }, []);
+  //       setMatches(data?.data || []);
+  //     } catch (error) {
+  //       // setError("Cannot Fetch data");
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   fetchMatches();
+  // }, []);
 
   return (
     <div className="flex flex-col items-center mt-2 h-screen">
@@ -53,31 +55,38 @@ const CricScore = () => {
         CricScore
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 ">
+      <div>
         {isLoading ? (
-          <img src={Loader} className="w-16 h-16 " />
-        ) : Error ? (
-          <div>{Error}</div>
+          <img src={Loader} className="w-16 h-16 mt-80" />
+        ) : matches.length === 0 ? (
+          <div className="font-semibold mt-20 text-xl">
+            Looks like we've been hitting the API too hard. Take a break, grab a
+            coffee ☕, and check back in a few minutes!
+          </div>
         ) : (
-          matches.map((items) => (
-            <div
-              key={items.id}
-              className="flex flex-col items-center border-1 border-green-700 rounded-lg "
-            >
-              <h3>{items.series}</h3>
-              <h3>{items.matchType}</h3>
-              <div>
-                <img className="w-12 h-12" src={items.t1img} alt={items.t1} />
-                <p>{items.t1s}</p>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 ">
+            {matches.map((items) => (
+              <div
+                key={items.id}
+                className="flex flex-col items-center border border-green-700 rounded-lg p-4"
+              >
+                <h3 className="font-bold">{items.series}</h3>
+                <h3>{items.matchType.toUpperCase()}</h3>
 
-              <div>
-                <img className="w-12 h-12" src={items.t2img} alt={items.t2} />
-                <p>{items.t2s}</p>
+                <div>
+                  <img className="w-12 h-12" src={items.t1img} alt={items.t1} />
+                  <p className="font-semibold">{items.t1s}</p>
+                </div>
+
+                <div className="flex items-center gap-2 mt-2">
+                  <img className="w-12 h-12" src={items.t2img} alt={items.t2} />
+                  <p className="font-semibold">{items.t2s}</p>
+                </div>
+
+                <p>{items.status}</p>
               </div>
-              <p>{items.status}</p>
-            </div>
-          ))
+            ))}
+          </div>
         )}
       </div>
     </div>

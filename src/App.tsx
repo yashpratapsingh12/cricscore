@@ -5,7 +5,8 @@ import CricScore from "./assets/Pages/CricScore";
 import CurrentMatches from "./assets/Pages/CurrentMatch";
 import PlayersList from "./assets/Pages/PlayersList";
 import SeriesList from "./assets/Pages/SeriesList";
-import SeriesSearch from "./assets/Pages/SeriesSearch";
+
+import CricNews from "./assets/Pages/CricNews";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path="Current" element={<CurrentMatches />} />
         <Route path="Player" element={<PlayersList />} />
         <Route path="SeriesList" element={<SeriesList />} />
-        <Route path="SeriesSearch" element={<SeriesSearch />} />
+        <Route path="CricNews" element={<CricNews />} />
       </Routes>
     </div>
   );

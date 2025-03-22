@@ -47,14 +47,14 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="SeriesSearch"
+        to="CricNews"
         className={({ isActive }) =>
           `rounded-lg p-1 ${
             isActive ? "bg-green-700 text-white" : "hover:bg-green-700"
           }`
         }
       >
-        <>SeriesSearch</>
+        <>CricNews</>
       </NavLink>
     </div>
   );
