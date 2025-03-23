@@ -26,28 +26,28 @@ const CricScore = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   // const [error, setError] = useState<string>("ss");
 
-  // useEffect(() => {
-  //   const fetchMatches = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `https://api.cricapi.com/v1/cricScore?apikey=${
-  //           import.meta.env.VITE_API_KEY
-  //         }`
-  //       );
+  useEffect(() => {
+    const fetchMatches = async () => {
+      try {
+        const response = await fetch(
+          `https://api.cricapi.com/v1/cricScore?apikey=${
+            import.meta.env.VITE_API_KEY
+          }`
+        );
 
-  //       const data = await response.json();
-  //       console.log(data);
+        const data = await response.json();
+        console.log(data);
 
-  //       setMatches(data?.data || []);
-  //     } catch (error) {
-  //       // setError("Cannot Fetch data");
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
+        setMatches(data?.data || []);
+      } catch (error) {
+        // setError("Cannot Fetch data");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  //   fetchMatches();
-  // }, []);
+    fetchMatches();
+  }, []);
 
   return (
     <div className="flex flex-col items-center mt-2 h-screen">
