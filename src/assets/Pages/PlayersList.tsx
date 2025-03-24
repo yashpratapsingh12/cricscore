@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useFetcher } from "react-router-dom";
 
 type player = {
   id: number;
