@@ -46,7 +46,7 @@ const CricScore = () => {
       }
     };
 
-    fetchMatches();
+    fetchMatches();``
   }, []);
 
   return (
