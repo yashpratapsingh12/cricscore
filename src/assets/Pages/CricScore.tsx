@@ -16,11 +16,6 @@ type Match = {
   series: string;
 };
 
-// type data = {
-//   matches: Match[];
-//   loading: boolean;
-// };
-
 const CricScore = () => {
   const [matches, setMatches] = useState<Match[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -46,7 +41,8 @@ const CricScore = () => {
       }
     };
 
-    fetchMatches();``
+    fetchMatches();
+    ``;
   }, []);
 
   return (
